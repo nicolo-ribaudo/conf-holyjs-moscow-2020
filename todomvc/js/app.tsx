@@ -7,8 +7,8 @@
 /// <reference path="./interfaces.d.ts"/>
 
 declare var Router;
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import { TodoModel } from "./todoModel";
 import { TodoFooter } from "./footer";
 import { TodoItem } from "./todoItem";
@@ -16,15 +16,10 @@ import { ALL_TODOS, ACTIVE_TODOS, COMPLETED_TODOS, ENTER_KEY } from "./constants
 
 class TodoApp extends React.Component<IAppProps, IAppState> {
 
-  public state : IAppState;
-
-  constructor(props : IAppProps) {
-    super(props);
-    this.state = {
-      nowShowing: ALL_TODOS,
-      editing: null
-    };
-  }
+  public state : IAppState = {
+    nowShowing: ALL_TODOS,
+    editing: null
+  };
 
   public componentDidMount() {
     var setState = this.setState;

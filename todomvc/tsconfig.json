@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "isolatedModules": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "jsx": "react",
+        "declaration": false,
+        "outDir": "./out",
+        "lib": ["ES2015", "DOM"]
+    },
+    "files": [
+        "js/constants.ts",
+        "js/interfaces.d.ts",
+        "js/todoModel.ts",
+        "js/utils.ts",
+        "js/app.tsx",
+        "js/footer.tsx",
+        "js/todoItem.tsx"
+    ],
+    "exclude": [],
+    "baseUrl": "types",
+    "typeRoots": ["types"],
+}

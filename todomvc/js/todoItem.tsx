@@ -6,19 +6,14 @@
 
 /// <reference path="./interfaces.d.ts"/>
 
-import * as classNames from "classnames";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import classNames from "classnames";
+import React from "react";
+import ReactDOM from "react-dom";
 import { ENTER_KEY, ESCAPE_KEY } from "./constants";
 
 class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
 
-  public state : ITodoItemState;
-
-  constructor(props : ITodoItemProps){
-    super(props);
-    this.state = { editText: this.props.todo.title };
-  }
+  public state : ITodoItemState = { editText: this.props.todo.title };
 
   public handleSubmit(event : React.FormEvent) {
     var val = this.state.editText.trim();
@@ -49,35 +44,6 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
     this.setState({ editText : input.value });
   }
 
-  /**
-   * This is a completely optional performance enhancement that you can
-   * implement on any React component. If you were to delete this method
-   * the app would still work correctly (and still be very performant!), we
-   * just use it as an example of how little code it takes to get an order
-   * of magnitude performance improvement.
-   */
-  public shouldComponentUpdate(nextProps : ITodoItemProps, nextState : ITodoItemState) {
-    return (
-      nextProps.todo !== this.props.todo ||
-      nextProps.editing !== this.props.editing ||
-      nextState.editText !== this.state.editText
-    );
-  }
-
-  /**
-   * Safely manipulate the DOM after updating the state when invoking
-   * `this.props.onEdit()` in the `handleEdit` method above.
-   * For more info refer to notes at https://facebook.github.io/react/docs/component-api.html#setstate
-   * and https://facebook.github.io/react/docs/component-specs.html#updating-componentdidupdate
-   */
-  public componentDidUpdate(prevProps : ITodoItemProps) {
-    if (!prevProps.editing && this.props.editing) {
-      var node = (ReactDOM.findDOMNode(this.refs["editField"]) as HTMLInputElement);
-      node.focus();
-      node.setSelectionRange(node.value.length, node.value.length);
-    }
-  }
-
   public render() {
     return (
       <li className={classNames({
@@ -97,7 +63,6 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
           <button className="destroy" onClick={this.props.onDestroy} />
         </div>
         <input
-          ref="editField"
           className="edit"
           value={this.state.editText}
           onBlur={ e => this.handleSubmit(e) }
